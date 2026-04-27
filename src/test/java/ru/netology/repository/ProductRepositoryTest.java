@@ -25,7 +25,6 @@ class ProductRepositoryTest {
   public void removeById() {
     ProductRepository repo = new ProductRepository();
 
-
     Product book1 = new Book(1, "Java core", 100, "Author1", 200, 2020);
     Product smart1 = new Smartphone(2, "Iphone 13", 1000, "Apple");
 
