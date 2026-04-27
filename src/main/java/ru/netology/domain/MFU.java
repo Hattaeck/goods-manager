@@ -10,9 +10,6 @@ class Scanner {
   }
 }
 
-//class MFU extends Printer, Scanner {
-//}
-
 class MFU {
   private Printer printer;
   private Scanner scanner;
