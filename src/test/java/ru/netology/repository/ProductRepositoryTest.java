@@ -6,40 +6,39 @@ import ru.netology.domain.Book;
 import ru.netology.domain.Product;
 import ru.netology.domain.Smartphone;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class ProductRepositoryTest {
-  private ProductRepository repository = new ProductRepository();
-  private Book coreJava = new Book();
-
-  @Test
-  public void saveOneItem() {
-    repository.save(coreJava);
-
-    Product[] expected = new Product[]{coreJava};
-    Product[] actual = repository.findAll();
-    assertArrayEquals(expected, actual);
-  }
+public class ProductRepositoryTest {
+  private ProductRepository repo = new ProductRepository();
+  private Product book = new Book(1, "Java", 100, "Author", 500, 2022);
+  private Product phone = new Smartphone(2, "iPhone", 1000, "Apple");
 
   @Test
-  public void sRemoveById() {
-    ProductRepository repo = new ProductRepository();
+  public void shouldSaveOneProduct() {
+    repo.save(book);
 
-
-    Product book1 = new Book(1, "Java core", 100, "Author1", 200, 2020);
-    Product smart1 = new Smartphone(2, "Iphone 13", 1000, "Apple");
-
-    repo.save(book1);
-    repo.save(smart1);
-
-    repo.removeById(1);
-
-    Product[] expected = { smart1 };
+    Product[] expected = { book };
     Product[] actual = repo.findAll();
 
     Assertions.assertArrayEquals(expected, actual);
   }
 
+  @Test
+  public void shouldRemoveExistingProduct() {
+    repo.save(book);
+    repo.save(phone);
 
+    repo.removeById(1);
 
+    Product[] expected = { phone };
+    Product[] actual = repo.findAll();
+
+    Assertions.assertArrayEquals(expected, actual);
+  }
+
+  @Test
+  public void shouldFindAllInEmptyRepository() {
+    Product[] expected = {};
+    Product[] actual = repo.findAll();
+
+    Assertions.assertArrayEquals(expected, actual);
+  }
 }
