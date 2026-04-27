@@ -22,7 +22,7 @@ class ProductRepositoryTest {
   }
 
   @Test
-  public void sRemoveById() {
+  public void removeById() {
     ProductRepository repo = new ProductRepository();
 
 
